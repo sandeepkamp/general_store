@@ -42,26 +42,36 @@ class StoreItemController extends Controller
     public function store(Request $request)
     {
       
-        $rule = [
-            'barrelno[]' => 'required',
-            'A70[]' => 'required',
-            'A98[]'=> 'required',
-            'E[]' => 'required',
-            '1st[]' => 'required',
-            '2nd[]' => 'required',
-            '3rd[]' => 'required',
-            'E2[]' => 'required',
-            'payin[]' => 'required',
-        ];
+        // $rule = [
+        //     'barrelno[]' => 'required',
+        //     'A70[]' => 'required',
+        //     'A98[]'=> 'required',
+        //     'E[]' => 'required',
+        //     '1st[]' => 'required',
+        //     '2nd[]' => 'required',
+        //     '3rd[]' => 'required',
+        //     'E2[]' => 'required',
+        //     'payin[]' => 'required',
+        // ];
         
-        $this->validate($request, $rule);
-        // dd($request);
-        $data = $request->all();
-         //dd($data);
-       $storeItem = StoreItem::create($data);
-      // dd($storeItem);
+        // $this->validate($request, $rule);
+        //  dd($request);
+        // $data = $request->all();
+         //dd($request->barrelNo);
+         foreach ($request->barrelNo as $barrelNos) {
+            $barrelNos['A70'];
+            $barrelNos['A98'];
+            $barrelNos['E'];
+            $barrelNos['1st'];
+            $barrelNos['2nd'];
+            $barrelNos['3rd'];
+            $barrelNos['E2'];
+            $barrelNos['payin'];
+         }
 
-        return redirect()->route('storeitem.show',['id'=> $storeItem]);
+       $storeItem = StoreItem::create($barrelNos);
+       //dd($storeItem);
+       return redirect()->route('storeitem.show',['id'=> $storeItem]);
        
     }
 
